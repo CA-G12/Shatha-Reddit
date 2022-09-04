@@ -63,22 +63,20 @@ main {
     cursor: pointer;
 }
 
-
-.form-control.error .small {
-    color: red;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-}
 .form p{
     text-align: center;
     margin-bottom: 10px;
     color: rgb(68, 68, 68);
 }
 
+.form-control.error .small {
+    color: red;
+    position: absolute;
+}
+
 /* animation style */
 
-.area{
+/* .area{
     width: 100%;
 }
 
@@ -196,4 +194,4 @@ main {
         border-radius: 50%;
     }
 
-}
+} */
