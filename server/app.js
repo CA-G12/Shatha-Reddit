@@ -4,6 +4,7 @@ const express = require('express');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const router = require('./routes');
+const { handleClientError, handleServerError } = require('./controllers/error');
 
 const app = express();
 
@@ -15,5 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(join(__dirname, '..', 'public')));
 app.use(router);
+app.use(handleClientError, handleServerError);
 
 module.exports = app;
