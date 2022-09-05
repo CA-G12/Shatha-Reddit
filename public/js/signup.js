@@ -5,11 +5,11 @@ const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 const password2 = document.querySelector('#password2');
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
+// form.addEventListener('submit', (e) => {
+//   e.preventDefault();
 
-  ValidateInputs();
-});
+//   ValidateInputs();
+// });
 
 const setError = (element, msg, index2) => {
   const formControl = element.parentElement;
@@ -75,3 +75,11 @@ const ValidateInputs = () => {
   }
 };
 // end client side validation
+
+const signUpBtn = document.querySelector('.signup-button');
+signUpBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  ValidateInputs();
+
+  
+});
