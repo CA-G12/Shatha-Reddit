@@ -87,6 +87,7 @@ signUpBtn.addEventListener('click', (e) => {
       username, email, password, confirmPassword,
     }),
   }).then((res) => res.json()).then(data=> {
+    console.log();
     if(data==='sign up success'){
         window.location.href='/home'
     }
