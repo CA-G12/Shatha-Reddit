@@ -226,11 +226,17 @@ main {
     width: 65px;
     cursor: pointer;
     font-size: 15px;
+    margin-left: 5px;
   }
   .pop-up-sec.active{
     opacity: 1;
     visibility: visible;
   }
-
+  .userComment {
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    margin-left: 5rem;
+}
   /* end style for comments popup */
 
