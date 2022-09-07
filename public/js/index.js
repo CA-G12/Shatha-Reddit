@@ -53,9 +53,9 @@ const createPostsCards = (data) => {
     postContent.textContent = post.content;
     const comment = document.createElement('div');
     comment.classList.add('comment');
-    const commentIcone = document.createElement('i');
-    commentIcone.classList.add('fa-solid');
-    commentIcone.classList.add('fa-comment');
+    const commentIcon = document.createElement('i');
+    commentIcon.classList.add('fa-solid');
+    commentIcon.classList.add('fa-comment');
     const spanComment = document.createElement('span');
     spanComment.textContent = ' Comments';
 
@@ -64,7 +64,7 @@ const createPostsCards = (data) => {
       fetchComment(post.id);
     });
 
-    comment.appendChild(commentIcone);
+    comment.appendChild(commentIcon);
     comment.appendChild(spanComment);
     postBody.appendChild(user);
     postBody.appendChild(postTitle);
@@ -98,10 +98,8 @@ const createComments = (data) => {
   commentBtn.textContent = 'Add';
   inputSection.appendChild(commentInput);
   inputSection.appendChild(commentBtn);
-  console.log(commentBtn, data);
 
   data.forEach((ele) => {
-    // console.log(ele)
     const username = document.createElement('small');
     username.textContent = ele.user_name;
     const comment = document.createElement('p');

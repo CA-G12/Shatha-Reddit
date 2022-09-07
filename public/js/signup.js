@@ -1,9 +1,8 @@
 // client side validation
-const form = document.querySelector('.form');
 const username = document.querySelector('#username');
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
-const password2 = document.querySelector('#password2');
+const confirmPassword = document.querySelector('#password2');
 
 const setError = (element, msg, index2) => {
   const formControl = element.parentElement;
@@ -36,7 +35,7 @@ const ValidateInputs = () => {
   const usernameValue = username.value.trim();
   const emailValue = email.value.trim();
   const passwordValue = password.value.trim();
-  const passwordValue2 = password2.value.trim();
+  const passwordValue2 = confirmPassword.value.trim();
 
   if (usernameValue === '') {
     setError(username, 'username is required', 0);
@@ -61,11 +60,11 @@ const ValidateInputs = () => {
   }
 
   if (passwordValue2 === '') {
-    setError(password2, 'Please confirm your password', 3);
+    setError(confirmPassword, 'Please confirm your password', 3);
   } else if (passwordValue !== passwordValue2) {
-    setError(password2, 'Passwords doesn\'t match', 3);
+    setError(confirmPassword, 'Passwords doesn\'t match', 3);
   } else {
-    setSuccess(password2);
+    setSuccess(confirmPassword);
   }
 };
 // end client side validation
@@ -75,21 +74,18 @@ signUpBtn.addEventListener('click', (e) => {
   e.preventDefault();
   ValidateInputs();
 
-  const username = document.querySelector('#username').value;
-  const email = document.querySelector('#email').value;
-  const password = document.querySelector('#password').value;
-  const confirmPassword = document.querySelector('#password2').value;
-
   fetch('/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      username, email, password, confirmPassword,
+      username: username.value,
+      email: email.value,
+      password: password.value,
+      confirmPassword: confirmPassword.value,
     }),
-  }).then((res) => res.json()).then(data=> {
-    console.log();
-    if(data==='sign up success'){
-        window.location.href='/home'
+  }).then((res) => res.json()).then((data) => {
+    if (data === 'sign up success') {
+      window.location.href = '/home';
     }
-  }).catch(err=> console.log('err', err))
+  }).catch((err) => console.log('err', err));
 });

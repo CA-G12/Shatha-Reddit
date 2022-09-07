@@ -24,7 +24,7 @@ const signIn = (req, res, next) => {
           throw new customizedError(400, 'wrong password');
         }).then((token) => {
           if (token) {
-            res.status(200).cookie('token', token, { httpOnly: true }).cookie('user_name', data.user_name)
+            res.status(200).cookie('token', token, { httpOnly: true })
               .json('sign in success');
           } else {
             throw new customizedError(500, 'sign in failed');

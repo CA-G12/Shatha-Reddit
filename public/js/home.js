@@ -13,8 +13,12 @@ const userName = document.querySelector('.user-name');
 const logOutBtn = document.querySelector('.logout-btn');
 const submitPost = document.querySelector('.create-post-button');
 
+const user = { user_name: '' };
 fetch('/username').then((data) => data.json())
-  .then((data) => userName.textContent = data.user_name);
+  .then((data) => {
+    user.user_name = data.user_name;
+    userName.textContent = data.user_name;
+  });
 
 logOutBtn.addEventListener('click', () => {
   fetch('/logout').then((data) => data.json()).then(window.location.href = '/');
@@ -32,11 +36,14 @@ const createPostsCards = (data) => {
     upIcon.classList.add('up-vote');
 
     upIcon.addEventListener('click', () => {
+      
       fetch('/upvote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_id: post.id}),
-      }).then((data) => data.json()).then(data=> location.reload());
+        body: JSON.stringify({ post_id: post.id }),
+      }).then((data) => data.json())
+      .then(data=> votesNum.textContent = Number(post.count) + 1)
+      // .then((data) => location.reload());
     });
 
     const votesNum = document.createElement('div');
@@ -47,16 +54,13 @@ const createPostsCards = (data) => {
     downIcon.classList.add('fa-chevron-down');
     downIcon.classList.add('down-vote');
 
-    downIcon.addEventListener('click', () => {
-    //   const flag = true;
-      //   if (flag) {
+    downIcon.addEventListener('click', () => { 
       fetch('/downvote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_id: post.id}),
-      }).then((data) => data.json()).then(data=> location.reload())
-      // .then((data) => flag = false);
-    //   }
+        body: JSON.stringify({ post_id: post.id }),
+      }).then((data) => data.json())
+      .then(data=>  votesNum.textContent = Number(post.count) - 1)
     });
 
     votes.appendChild(upIcon);
@@ -70,10 +74,6 @@ const createPostsCards = (data) => {
     user.textContent = 'by ';
     const linkName = document.createElement('a');
     linkName.href = '#';
-
-    // fetch(`/users/${post.user_id}`).then((res) => res.json()).then((res) => {
-    //   linkName.textContent = res.user_name;
-    // }).catch((err) => console.log('err fetch'));
     linkName.textContent = post.user_name;
     user.appendChild(linkName);
 
@@ -85,9 +85,9 @@ const createPostsCards = (data) => {
     postContent.textContent = post.content;
     const comment = document.createElement('div');
     comment.classList.add('comment');
-    const commentIcone = document.createElement('i');
-    commentIcone.classList.add('fa-solid');
-    commentIcone.classList.add('fa-comment');
+    const commentIcon = document.createElement('i');
+    commentIcon.classList.add('fa-solid');
+    commentIcon.classList.add('fa-comment');
     const spanComment = document.createElement('span');
     spanComment.textContent = ' Comments';
 
@@ -96,7 +96,7 @@ const createPostsCards = (data) => {
       fetchComment(post.id);
     });
 
-    comment.appendChild(commentIcone);
+    comment.appendChild(commentIcon);
     comment.appendChild(spanComment);
     postBody.appendChild(user);
     postBody.appendChild(postTitle);
@@ -130,10 +130,8 @@ const createComments = (data, id) => {
   commentBtn.textContent = 'Add';
   inputSection.appendChild(commentInput);
   inputSection.appendChild(commentBtn);
-  console.log(commentBtn, data);
 
   data.forEach((ele) => {
-    // console.log(ele)
     const username = document.createElement('small');
     username.textContent = ele.user_name;
     const comment = document.createElement('p');
@@ -144,16 +142,15 @@ const createComments = (data, id) => {
     userComment.appendChild(comment);
     commentSection.appendChild(userComment);
   });
-  
+
   commentBtn.addEventListener('click', () => {
     fetch('/comments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ comment: commentInput.value, post_id: id }),
     }).then((res) => res.json()).then((res) => {
-      console.log(res);
       const username = document.createElement('small');
-      username.textContent = getCookie('user_name');
+      username.textContent = user.user_name;
       const comment = document.createElement('p');
       comment.textContent = res.comment;
       const userComment = document.createElement('div');
@@ -166,7 +163,7 @@ const createComments = (data, id) => {
   });
 };
 
-addPostBtn.addEventListener('click', (e) => {
+addPostBtn.addEventListener('click', () => {
   postPopUp.classList.add('active');
 });
 
@@ -188,16 +185,16 @@ submitPost.addEventListener('click', () => {
   fetch('/posts', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title: title.value, content: content.value}),
+    body: JSON.stringify({ title: title.value, content: content.value }),
   }).then((res) => res.json()).then((data) => {
-    console.log(data)
+    data[0].user_name = user.user_name;
+    data[0].count = 0;
     createPostsCards(data);
     title.value = '';
     content.value = '';
     small.forEach((e) => {
       e.classList.remove('error');
       e.textContent = '';
-      location.reload()
     });
   });
 });
@@ -241,58 +238,3 @@ const setSuccess = (element, msg) => {
 };
   // end client side validation for create post form
 
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
-console.log(getCookie('user_name'));
-
-// const createComments = (data) => {
-//     data.forEach((ele) => {
-//       console.log(ele);
-//       const popUpBody = document.createElement('div');
-//       popUpBody.classList.add('pop-up-body');
-//       popUpSection.appendChild(popUpBody);
-
-//       const closeIcon = document.createElement('i');
-//       closeIcon.classList.add('fa-solid');
-//       closeIcon.classList.add('fa-circle-xmark');
-//       closeIcon.addEventListener('click', () => {
-//         popUpSection.classList.remove('active');
-//       });
-//       popUpBody.appendChild(closeIcon);
-//       const inputSection = document.createElement('div')
-//       inputSection.classList.add('input')
-//       const commentInput = document.createElement('input');
-//       commentInput.classList.add('comment-input');
-//       commentInput.setAttribute('placeholder', 'write a comment');
-//       const commentBtn = document.createElement('button');
-//       commentBtn.classList.add('add-comment');
-//       commentBtn.textContent = 'Add';
-//       inputSection.appendChild(commentInput)
-//       inputSection.appendChild(commentBtn)
-//       const commentSection= document.createElement('div')
-//       commentSection.classList.add('comments')
-//       const para = document.createElement('p');
-//       commentSection.appendChild(para);
-//       para.textContent = ele.comment;
-//       popUpBody.appendChild(inputSection)
-//       popUpBody.appendChild(commentSection)
-//       commentBtn.addEventListener('click', () => {
-//         const commentInput = document.querySelector('.comment-input').value;
-//         fetch('/comments', {
-//           method: 'POST',
-//           headers: { 'Content-Type': 'application/json' },
-//           body: JSON.stringify({ comment: commentInput, user_id: 3, post_id: ele.post_id }),
-//         }).then((res) => res.json()).then((res) => {
-//           console.log(res);
-//           // const comment = document.createElement('p')
-//           // comment.textContent= res.comment;
-//           // commentSection.appendChild(comment);
-//           // commentInput.value=''
-//         });
-//       });
-//     });
-//   };

@@ -2,12 +2,6 @@
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 
-// form.addEventListener('submit', (e) => {
-//   e.preventDefault();
-
-//   ValidateInputs();
-// });
-
 const setError = (element, msg, index2) => {
   const formControl = element.parentElement;
   const small = document.querySelectorAll('.small');
@@ -63,16 +57,14 @@ signInBtn.addEventListener('click', (e) => {
   e.preventDefault();
   ValidateInputs();
 
-  const email = document.querySelector('#email').value;
-  const password = document.querySelector('#password').value;
 
   fetch('/signin', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
-  }).then((res) => res.json()).then(data=> {
-    if(data==='sign in success'){
-        window.location.href='/home'
+    body: JSON.stringify({ email: email.value, password : password.value}),
+  }).then((res) => res.json()).then((data) => {
+    if (data === 'sign in success') {
+      window.location.href = '/home';
     }
-  }).catch(err=> console.log('err', err))
+  }).catch((err) => console.log('err', err));
 });
