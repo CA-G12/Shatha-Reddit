@@ -37,9 +37,9 @@ CREATE TABLE votes(
 
 INSERT INTO users(user_name,email,password) 
 VALUES
-('ahmed', 'ahmed123@gmail.com', 'ahmed1234'),
-('omar', 'omar123@gmail.com', 'omar1234'),
-('shatha', 'shatha123@gmail.com', 'shatha1234');
+('ahmed', 'ahmed123@gmail.com', '$2a$15$XBZ/9jJ8pzBEUZ2FHo01e.fFDwnpYjQcP711Slod9JcuDi7iYRkHG'), --ahmed1234
+('omar', 'omar123@gmail.com', '$2a$15$enzNE.WS5l60yAaIk1zHHOZPGx2A43nCrS0yHTuzaNmwPNO3ibCQi'), --omar1234
+('shatha', 'shatha123@gmail.com', '$2a$15$0h2ZeCKhZ9mr5Pu71g1zYegjtCTiO0QuM8jlSi5a3v0mGhTrwWJ0S'); --shatha1234
 
 INSERT INTO posts(title,content,user_id) 
 VALUES 

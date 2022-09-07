@@ -3,6 +3,7 @@ const popUpSection = document.querySelector('.pop-up-sec');
 const postSection = document.querySelector('.posts-section');
 const commentSection = document.querySelector('.comments');
 const addCommentBtn = document.querySelector('.add-comment');
+
 const createPostsCards = (data) => {
   data.forEach((post) => {
     const postContainer = document.createElement('div');
@@ -19,7 +20,8 @@ const createPostsCards = (data) => {
 
     const votesNum = document.createElement('div');
     votesNum.classList.add('votes-num');
-    votesNum.textContent = post.count;
+    // fetch(`/votes/${post.id}`).then(data=> data.json()).then(votesNum.textContent= data.length)
+    // votesNum.textContent = post.count;
     const downIcone = document.createElement('i');
     downIcone.classList.add('fa-solid');
     downIcone.classList.add('fa-chevron-down');
@@ -32,6 +34,7 @@ const createPostsCards = (data) => {
     votes.appendChild(votesNum);
     votes.appendChild(downIcone);
     postContainer.appendChild(votes);
+
     const postBody = document.createElement('div');
     postBody.classList.add('post-body');
     const user = document.createElement('div');
@@ -39,9 +42,11 @@ const createPostsCards = (data) => {
     user.textContent = 'by ';
     const linkName = document.createElement('a');
     linkName.href = '#';
+
     fetch(`/users/${post.user_id}`).then((res) => res.json()).then((res) => {
       linkName.textContent = res.user_name;
     }).catch((err) => console.log('err fetch'));
+
     user.appendChild(linkName);
     const title = document.createElement('h4');
     title.classList.add('title');
@@ -56,6 +61,7 @@ const createPostsCards = (data) => {
     commentIcone.classList.add('fa-comment');
     const spanComment = document.createElement('span');
     spanComment.textContent = ' Comments';
+    
     comment.addEventListener('click', () => {
       popUpSection.classList.add('active');
       fetchComment(post.id);

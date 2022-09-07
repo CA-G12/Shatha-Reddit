@@ -1,4 +1,4 @@
-const getUserQuery = require('../database/queries/getUserQuery');
+const getUserQuery = require('../../database/queries/getUserQuery');
 
 const getUser = (req, res) => {
   const { id } = req.params;

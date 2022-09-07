@@ -1,4 +1,4 @@
-const getVotesQuery = require('../database/queries/getVotesQuery');
+const getVotesQuery = require('../../database/queries/getVotesQuery');
 
 const getVotes = (req, res) => {
   const { id } = req.params;
