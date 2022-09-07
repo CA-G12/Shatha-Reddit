@@ -1,147 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/en/7/70/AlienBlue_Icon.png"
-        type="image/x-icon">
-    <link rel="stylesheet" href="../css/home.css">
-    <script
-    src="https://kit.fontawesome.com/da3c28159f.js"
-    crossorigin="anonymous"
-  ></script>
-    <title>Reddit</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/en/7/70/AlienBlue_Icon.png"
+    type="image/x-icon">
+  <link rel="stylesheet" href="../css/home.css">
+  <script src="https://kit.fontawesome.com/da3c28159f.js" crossorigin="anonymous"></script>
+  <title>Reddit</title>
 </head>
+
 <body>
-    <div class="popup-post-container">
-        <div class="popup-post-body">
-            <i class="fa-solid fa-xmark"></i>
-                <div class="form-title-container">
-                    <h2 class="form-title">Create A New Post</h2>
-                </div>
-                
-                <label for="post-title-input" class="form-post-label">Post Title</label>
-                <input type="text" class="post-input" id = "post-title-input">
+  <div class="popup-post-container">
+    <div class="popup-post-body">
+      <i class="fa-solid fa-xmark"></i>
+      <div class="form-title-container">
+        <h2 class="form-title">Create A New Post</h2>
+      </div>
 
-                <label for="post-content-input" class="form-post-label">Post Content</label>
-                <textarea name="post-content-input" class="post-input post-content-input" id = "post-content-input" cols="30" rows="10"></textarea>
-
-                <button type="submit" class="create-post-button">Create Post</button>
-        </div>
+      <label for="post-title-input" class="form-post-label">Post Title</label>
+      <input type="text" class="post-input" id="post-title-input">
+      <small class="small"></small>
+      <label for="post-content-input" class="form-post-label">Post Content</label>
+      <textarea name="post-content-input" class="post-input" id="post-content-input" cols="30" rows="10"></textarea>
+      <small class="small"></small>
+      <button type="submit" class="create-post-button">Create Post</button>
     </div>
-    <section class="pop-up-sec active">
-        <div class="pop-up-body">
-          <i class="fa-solid fa-circle-xmark"></i>
-          <div>
-          <input type="text" name="" id="" placeholder="write a comment" />
-          <button class="add-comment">Add</button>
-          </div>
-          <p>
-            Conference Semifinals might not have gone the way the Dallas Mustangs
-            wanted
-          </p>
-          <p>
-            Conference Semifinals might not have gone the way the Dallas Mustangs
-            wanted
-          </p>
-          <p>
-            Conference Semifinals might not have gone the way the Dallas Mustangs
-            wanted
-          </p>
-          <p>
-            Conference Semifinals might not have gone the way the Dallas Mustangs
-            wanted
-          </p>
-        </div>
-      </section>
-    <header>
-        <nav class="container">
-          <ul>
-            <li><a href="#home">home</a></li>
-            <li><a href="#about">about</a></li>
-            <li><a href="#timeline">timeline</a></li>
-            <li>
-              <a href="#">
-                <span>Reddit</span>
-                <span>Trending Posts</span>
-              </a>
-            </li>
-            <li><a href="#">welcome <span>ahmed</span></a></li>
-            <li><button class="logout-btn">Log Out</button></li>
-            <li><button class="signup-btn">Profile</button></li>
-          </ul>
-        </nav>
-      </header>
-      <main>
-        <div class="container-main">
-            <div class="posts-section">
-                <button class="add-post-btn">Add Post</button>
-                <p>Popular Posts</p>
-                <div class="posts-container">
-                    <div class="votes">
-                        <i class="fa-solid fa-chevron-up up-vote"></i>
-                        <div class="votes-num">3</div>
-                        <i class="fa-solid fa-chevron-down down-vote"></i>
-                    </div>
-                    <div class="post-body">
-                        <div class="user">by <a href="#">ahmed</a></div>
-                        <h4 class="title">post1</h4>
-                        <p class="content">post 1 post 1post1 </p>
-                        <div class="comment">
-                            <i class="fa-solid fa-comment"></i>
-                            <span>Comments</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="posts-container">
-                    <div class="votes">
-                        <i class="fa-solid fa-chevron-up up-vote"></i>
-                        <div class="votes-num">3</div>
-                        <i class="fa-solid fa-chevron-down down-vote"></i>
-                    </div>
-                    <div class="post-body">
-                        <div class="user">by <a href="#">ahmed</a></div>
-                        <h4 class="title">post1</h4>
-                        <p class="content">post 1 post 1post1 </p>
-                        <div class="comment">
-                            <i class="fa-solid fa-comment"></i>
-                            <span>Comments</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="posts-container">
-                    <div class="votes">
-                        <i class="fa-solid fa-chevron-up up-vote"></i>
-                        <div class="votes-num">3</div>
-                        <i class="fa-solid fa-chevron-down down-vote"></i>
-                    </div>
-                    <div class="post-body">
-                        <div class="user">by <a href="#">ahmed</a></div>
-                        <h4 class="title">post1</h4>
-                        <p class="content">post 1 post 1post1 </p>
-                        <div class="comment">
-                            <i class="fa-solid fa-comment"></i>
-                            <span>Comments</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="side-section">
-                <a href="/" class="link">Sports</a>
-                <a href="/" class="link">shops</a>
-                <a href="/" class="link">about</a>
-                <a href="/" class="link">careers</a>
-                <a href="/" class="link">press</a>
-                <a href="/" class="link">advertise</a>
-                <a href="/" class="link">test</a>
-                <a href="/" class="link">Terms</a>
-                <a href="/" class="link">Content policy</a>
-                <a href="/" class="link">Privacy</a>
-                <a href="/" class="link">mood</a>
-            </div>
-        </div>
-      </main>
-<script src="../js/home.js"></script>
+  </div>
+  <section class="pop-up-sec">
+    <div class="pop-up-body">
+      <i class="fa-solid fa-circle-xmark"></i>
+      <div class="input">
+      </div>
+      <div class="comments">
+      </div>
+    </div>
+  </section>
+  <header>
+    <nav class="container">
+      <ul>
+        <li><a href="#home">home</a></li>
+        <li><a href="#about">about</a></li>
+        <li><a href="#timeline">timeline</a></li>
+        <li>
+          <a href="/">
+            <span>Reddit</span>
+            <span>Trending Posts</span>
+          </a>
+        </li>
+        <li><a href="#">welcome <span class="user-name">ahmed</span></a></li>
+        <li><button class="logout-btn">Log Out</button></li>
+        <li><a href="../html/profile.html"><button class="signup-btn">Profile</button></a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="container-main">
+      <div class="posts-section">
+        <button class="add-post-btn">Add Post</button>
+        <p>Popular Posts</p>
+      </div>
+      <div class="side-section">
+        <a href="/" class="link">Sports</a>
+        <a href="/" class="link">shops</a>
+        <a href="/" class="link">about</a>
+        <a href="/" class="link">tests</a>
+        <a href="/" class="link">shopping</a>
+        <a href="/" class="link">advertise</a>
+        <a href="/" class="link">test</a>
+        <a href="/" class="link">Terms</a>
+        <a href="/" class="link">tweets</a>
+        <a href="/" class="link">Privacy</a>
+        <a href="/" class="link">mood</a>
+      </div>
+    </div>
+  </main>
+  <script src="../js/home.js"></script>
 </body>
+
 </html>

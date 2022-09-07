@@ -230,7 +230,21 @@ main {
     top: 30px;
     right: 40px;
     font-size: 25px;
+    cursor: pointer;
 }
+.post-input.error{
+    border: 1px solid red;
+}
+.post-input.success{
+    border: 1px solid green;
+}
+.userComment{
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    margin-left: 5rem;
+}
+
 
 .popup-post-body input,
 textarea {
@@ -252,6 +266,10 @@ textarea {
     width: 130px;
     cursor: pointer;
     font-size: 20px;
+}
+
+.small.error{
+color: red;
 }
 
 /* end style for add post popup */
@@ -292,7 +310,7 @@ textarea {
   }
 .pop-up-body div{
     width: 100%;
-    margin-left: 10rem;
+    text-align: center;
 }
   .pop-up-body input{
     padding: 10px;
@@ -317,8 +335,12 @@ textarea {
     width: 65px;
     cursor: pointer;
     font-size: 15px;
+    margin-left: 5px;
   }
-
+  .pop-up-sec.active{
+    opacity: 1;
+    visibility: visible;
+  }
 
   /* end style for comments popup */
 

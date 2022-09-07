@@ -1,8 +1,8 @@
 const joi = require('joi');
-const { comparePassword } = require('../utils/customBcrypt');
-const checkUserEmailQuery = require('../database/queries/checkUserEmailQuery');
-const customizedError = require('../utils/customError');
-const { jwtSign } = require('../utils/customJwt');
+const { comparePassword } = require('../../utils/customBcrypt');
+const checkUserEmailQuery = require('../../database/queries/checkUserEmailQuery');
+const customizedError = require('../../utils/customError');
+const { jwtSign } = require('../../utils/customJwt');
 
 const signIn = (req, res, next) => {
   const { email, password } = req.body;
@@ -24,7 +24,7 @@ const signIn = (req, res, next) => {
           throw new customizedError(400, 'wrong password');
         }).then((token) => {
           if (token) {
-            res.status(200).cookie('token', token, { httpOnly: true }).cookie('user_name', data.user_name, { httpOnly: true })
+            res.status(200).cookie('token', token, { httpOnly: true }).cookie('user_name', data.user_name).cookie('user_id', data.id)
               .json('sign in success');
           } else {
             throw new customizedError(500, 'sign in failed');

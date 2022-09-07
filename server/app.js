@@ -5,7 +5,6 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const router = require('./routes');
 const { handleClientError, handleServerError } = require('./controllers/error');
-
 const app = express();
 
 app.set('port', process.env.PORT || 7000);
