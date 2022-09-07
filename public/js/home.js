@@ -1,4 +1,4 @@
-const closeIcone = document.querySelector('.fa-circle-xmark');
+const closeIcon = document.querySelector('.fa-circle-xmark');
 const popUpSection = document.querySelector('.pop-up-sec');
 const postSection = document.querySelector('.posts-section');
 const commentSection = document.querySelector('.comments');
@@ -11,9 +11,10 @@ const content = document.querySelector('#post-content-input');
 const small = document.querySelectorAll('.small');
 const userName = document.querySelector('.user-name');
 const logOutBtn = document.querySelector('.logout-btn');
+const submitPost = document.querySelector('.create-post-button');
 
 fetch('/username').then((data) => data.json())
-.then((data) => userName.textContent = data.user_name);
+  .then((data) => userName.textContent = data.user_name);
 
 logOutBtn.addEventListener('click', () => {
   fetch('/logout').then((data) => data.json()).then(window.location.href = '/');
@@ -34,27 +35,28 @@ const createPostsCards = (data) => {
       fetch('/upvote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_id: post.id, user_id: getCookie('user_id') }),
-      }).then((data) => data.json()).then(console.log);
+        body: JSON.stringify({ post_id: post.id}),
+      }).then((data) => data.json()).then(data=> location.reload());
     });
 
     const votesNum = document.createElement('div');
     votesNum.classList.add('votes-num');
-    // votesNum.textContent = post.count;
+    votesNum.textContent = post.count;
     const downIcon = document.createElement('i');
     downIcon.classList.add('fa-solid');
     downIcon.classList.add('fa-chevron-down');
     downIcon.classList.add('down-vote');
 
     downIcon.addEventListener('click', () => {
-      let flag = true;
-      if (flag) {
-        fetch('/downvote', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ post_id: post.id, user_id: getCookie('user_id') }),
-        }).then((data) => data.json()).then((data) => flag = false);
-      }
+    //   const flag = true;
+      //   if (flag) {
+      fetch('/downvote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ post_id: post.id}),
+      }).then((data) => data.json()).then(data=> location.reload())
+      // .then((data) => flag = false);
+    //   }
     });
 
     votes.appendChild(upIcon);
@@ -69,11 +71,12 @@ const createPostsCards = (data) => {
     const linkName = document.createElement('a');
     linkName.href = '#';
 
-    fetch(`/users/${post.user_id}`).then((res) => res.json()).then((res) => {
-      linkName.textContent = res.user_name;
-    }).catch((err) => console.log('err fetch'));
-    // linkName.textContent = post.user_name;
+    // fetch(`/users/${post.user_id}`).then((res) => res.json()).then((res) => {
+    //   linkName.textContent = res.user_name;
+    // }).catch((err) => console.log('err fetch'));
+    linkName.textContent = post.user_name;
     user.appendChild(linkName);
+
     const postTitle = document.createElement('h4');
     postTitle.classList.add('title');
     postTitle.textContent = post.title;
@@ -87,10 +90,12 @@ const createPostsCards = (data) => {
     commentIcone.classList.add('fa-comment');
     const spanComment = document.createElement('span');
     spanComment.textContent = ' Comments';
+
     comment.addEventListener('click', () => {
       popUpSection.classList.add('active');
       fetchComment(post.id);
     });
+
     comment.appendChild(commentIcone);
     comment.appendChild(spanComment);
     postBody.appendChild(user);
@@ -106,15 +111,15 @@ fetch('/posts').then((data) => data.json())
   .then((data) => createPostsCards(data))
   .catch((err) => console.log(err));
 
-closeIcone.addEventListener('click', () => {
+const fetchComment = (id) => {
+  fetch(`/comments/${id}`).then((res) => res.json()).then((data) => createComments(data, id));
+};
+
+closeIcon.addEventListener('click', () => {
   popUpSection.classList.remove('active');
 });
 
-const fetchComment = (id) => {
-  fetch(`/comments/${id}`).then((res) => res.json()).then((data) => createComments(data));
-};
-
-const createComments = (data) => {
+const createComments = (data, id) => {
   commentSection.textContent = '';
   inputSection.textContent = '';
   const commentInput = document.createElement('input');
@@ -125,6 +130,8 @@ const createComments = (data) => {
   commentBtn.textContent = 'Add';
   inputSection.appendChild(commentInput);
   inputSection.appendChild(commentBtn);
+  console.log(commentBtn, data);
+
   data.forEach((ele) => {
     // console.log(ele)
     const username = document.createElement('small');
@@ -136,31 +143,28 @@ const createComments = (data) => {
     userComment.appendChild(username);
     userComment.appendChild(comment);
     commentSection.appendChild(userComment);
-
-    commentBtn.addEventListener('click', () => {
-      const commentInput = document.querySelector('.comment-input').value;
-      fetch('/comments', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ comment: commentInput, user_id: getCookie('user_id'), post_id: ele.post_id }),
-      }).then((res) => res.json()).then((res) => {
-        console.log(res);
-        const username = document.createElement('small');
-        username.textContent = getCookie('user_name');
-        const comment = document.createElement('p');
-        comment.textContent = res.comment;
-        const userComment = document.createElement('div');
-        userComment.classList.add('userComment');
-        userComment.appendChild(username);
-        userComment.appendChild(comment);
-        commentSection.appendChild(userComment);
-        commentInput.value = '';
-      });
+  });
+  
+  commentBtn.addEventListener('click', () => {
+    fetch('/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ comment: commentInput.value, post_id: id }),
+    }).then((res) => res.json()).then((res) => {
+      console.log(res);
+      const username = document.createElement('small');
+      username.textContent = getCookie('user_name');
+      const comment = document.createElement('p');
+      comment.textContent = res.comment;
+      const userComment = document.createElement('div');
+      userComment.classList.add('userComment');
+      userComment.appendChild(username);
+      userComment.appendChild(comment);
+      commentSection.appendChild(userComment);
+      commentInput.value = '';
     });
   });
 };
-
-console.log(document.cookie);
 
 addPostBtn.addEventListener('click', (e) => {
   postPopUp.classList.add('active');
@@ -172,28 +176,29 @@ postCloseIcon.addEventListener('click', () => {
   title.classList.remove('success');
   content.classList.remove('error');
   content.classList.remove('success');
-  // title.value=''
-  //     content.value=''
   small.forEach((e) => {
     e.classList.remove('error');
     e.textContent = '';
   });
 });
 
-const submitPost = document.querySelector('.create-post-button');
 submitPost.addEventListener('click', () => {
   ValidateInputs();
-  const title = document.querySelector('#post-title-input').value;
-  const content = document.querySelector('#post-content-input').value;
 
   fetch('/posts', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title, content, user_id: getCookie('user_id') }),
+    body: JSON.stringify({ title: title.value, content: content.value}),
   }).then((res) => res.json()).then((data) => {
+    console.log(data)
     createPostsCards(data);
-    // title.value = '';
-    // content.value = '';
+    title.value = '';
+    content.value = '';
+    small.forEach((e) => {
+      e.classList.remove('error');
+      e.textContent = '';
+      location.reload()
+    });
   });
 });
 
@@ -236,15 +241,13 @@ const setSuccess = (element, msg) => {
 };
   // end client side validation for create post form
 
-  
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  }
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
-console.log(getCookie('user_name'))
-
+console.log(getCookie('user_name'));
 
 // const createComments = (data) => {
 //     data.forEach((ele) => {
