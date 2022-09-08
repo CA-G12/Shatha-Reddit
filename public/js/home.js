@@ -53,7 +53,10 @@ const createPostsCards = (data) => {
     downIcon.classList.add('fa-solid');
     downIcon.classList.add('fa-chevron-down');
     downIcon.classList.add('down-vote');
-
+// const vote={
+//   count: ''
+// }
+//     fetch(`./votes/${post.id}`).then(data=> data.json()).then(data=> console.log(data.length)
     downIcon.addEventListener('click', () => { 
       fetch('/downvote', {
         method: 'POST',
@@ -196,6 +199,8 @@ submitPost.addEventListener('click', () => {
       e.classList.remove('error');
       e.textContent = '';
     });
+    content.classList.remove('success')
+    title.classList.remove('success')
   });
 });
 

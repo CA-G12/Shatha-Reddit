@@ -1,7 +1,7 @@
 // client side validation
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
-
+const errMsg = document.querySelector('.err-msg');
 const setError = (element, msg, index2) => {
   const formControl = element.parentElement;
   const small = document.querySelectorAll('.small');
@@ -57,14 +57,15 @@ signInBtn.addEventListener('click', (e) => {
   e.preventDefault();
   ValidateInputs();
 
-
   fetch('/signin', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email.value, password : password.value}),
+    body: JSON.stringify({ email: email.value, password: password.value }),
   }).then((res) => res.json()).then((data) => {
     if (data === 'sign in success') {
       window.location.href = '/home';
+    } else if (data.status === 400 || data.status===500) {
+      errMsg.textContent = data.msg;
     }
   }).catch((err) => console.log('err', err));
 });
