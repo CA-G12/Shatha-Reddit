@@ -19,6 +19,7 @@ main {
     width: 405px;
     padding: 30px 40px;
     background-color: rgb(250, 250, 250);
+    z-index: 1;
 }
 
 .form-control {
@@ -76,7 +77,7 @@ main {
 
 /* animation style */
 
-/* .area{
+.area{
     width: 100%;
 }
 
@@ -178,7 +179,9 @@ main {
     animation-duration: 11s;
 }
 
-
+.form .err-msg{
+    color: red;
+}
 
 @keyframes animate {
 
@@ -194,4 +197,4 @@ main {
         border-radius: 50%;
     }
 
-} */
+}

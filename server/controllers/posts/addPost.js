@@ -11,7 +11,7 @@ const schema = joi.object({
 })
 schema.validateAsync({title, content}).then(data=>{
     verifyJwt(req.cookies.token).then(decoded=>   addPostQuery(title,content,decoded.user_id))
-    .then(data=> res.json(data.rows)).then(console.log)
+    .then(data=> res.json(data.rows)).catch((err) => res.clearCookie('token').redirect('/'));
 })
 .catch(err=> console.log('errr', err))
 

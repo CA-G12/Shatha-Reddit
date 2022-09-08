@@ -5,7 +5,6 @@ const { hashPassword } = require('../../utils/customBcrypt');
 const addUserQuery = require('../../database/queries/addUserQuery');
 const { jwtSign } = require('../../utils/customJwt');
 
-
 const signUp = (req, res, next) => {
   const {
     username, email, password, confirmPassword,
@@ -28,13 +27,13 @@ const signUp = (req, res, next) => {
       }
     }).then((hashedPassword) => addUserQuery(username, email, hashedPassword))
     .then((result) => jwtSign({ user_id: result.rows[0].id, user_name: result.rows[0].user_name, isLogged: 'true' })
-    .then((token) => {
-      if (token) {
-        res.status(200).cookie('token', token, { httpOnly: true }).json('sign up success');
-      } else {
-        throw new customizeError(500, 'sign up failed');
-      }
-    }))
+      .then((token) => {
+        if (token) {
+          res.status(200).cookie('token', token, { httpOnly: true }).json('sign up success');
+        } else {
+          throw new customizeError(500, 'sign up failed');
+        }
+      }))
     .catch((err) => next(err));
 };
 module.exports = signUp;

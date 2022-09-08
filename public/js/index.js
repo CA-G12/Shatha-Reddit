@@ -116,7 +116,6 @@ const createComments = (data) => {
   
 };
 
-
 addCommentBtn.addEventListener('click', () => {
   window.location.href = './html/signin.html';
 });
