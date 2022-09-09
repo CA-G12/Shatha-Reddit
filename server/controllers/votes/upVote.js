@@ -1,4 +1,4 @@
-const upVoteQuery = require('../../database/queries/upVoteQuery');
+const {upVoteQuery} = require('../../database/queries/index');
 const {verifyJwt}=require('../../utils/customJwt')
 const upVote = (req,res)=>{
   const  {post_id} = req.body;

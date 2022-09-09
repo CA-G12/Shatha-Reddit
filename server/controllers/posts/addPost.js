@@ -1,4 +1,4 @@
-const addPostQuery = require('../../database/queries/addPostQuery')
+const {addPostQuery }= require('../../database/queries/index')
 const joi = require('joi')
 const customizeError = require('../../utils/customError')
 const {verifyJwt} = require('../../utils/customJwt')

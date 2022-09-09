@@ -3,10 +3,9 @@ const userRouter = require('express').Router();
 const { addComment, getComments } = require('../controllers/comments');
 const { getPosts, addPost, getUserPosts,deletePost} = require('../controllers/posts');
 const { getUserName } = require('../controllers/users');
-const { getVotes, upVote, downVote } = require('../controllers/votes');
+const { upVote, downVote } = require('../controllers/votes');
 
 userRouter.get('/posts', getPosts);
-userRouter.get('/votes/:id', getVotes);
 userRouter.get('/comments/:id', getComments);
 userRouter.post('/comments', addComment);
 userRouter.post('/posts', addPost);

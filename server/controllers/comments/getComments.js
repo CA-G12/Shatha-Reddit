@@ -1,4 +1,4 @@
-const getCommentsQuery = require('../../database/queries/getCommentsQuery');
+const {getCommentsQuery} = require('../../database/queries/index');
 
 const getComments = (req, res) => {
   const { id } = req.params;

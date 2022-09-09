@@ -1,6 +1,6 @@
 const { verifyJwt } = require('../../utils/customJwt');
 const customizedError = require('../../utils/customError');
-const getUserQuery = require('../../database/queries/getUserQuery');
+const {getUserQuery} = require('../../database/queries/index');
 
 const getUserName = (req, res, next) => {
   verifyJwt(req.cookies.token).then((decoded) => {

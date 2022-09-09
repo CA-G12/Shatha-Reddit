@@ -1,4 +1,4 @@
-const addCommentQuery = require('../../database/queries/addCommentQuery');
+const {addCommentQuery} = require('../../database/queries/index');
 const { verifyJwt } = require('../../utils/customJwt');
 
 const addComment = (req, res) => {
