@@ -140,7 +140,7 @@ const createComments = (data, id) => {
     const comment = document.createElement('p');
     comment.textContent = ele.comment;
     const userComment = document.createElement('div');
-    userComment.classList.add('userComment');
+    userComment.classList.add('user-comment');
     userComment.appendChild(username);
     userComment.appendChild(comment);
     commentSection.appendChild(userComment);
@@ -157,7 +157,7 @@ const createComments = (data, id) => {
       const comment = document.createElement('p');
       comment.textContent = res.comment;
       const userComment = document.createElement('div');
-      userComment.classList.add('userComment');
+      userComment.classList.add('user-comment');
       userComment.appendChild(username);
       userComment.appendChild(comment);
       commentSection.appendChild(userComment);

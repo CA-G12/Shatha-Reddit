@@ -113,12 +113,18 @@ main {
     background-color: #fafafa;
     border-radius: 10px;
     padding: 20px;
+    text-align: center;
 }
 
-.side-section a {
-    text-decoration: none;
-    color: black;
+.side-section img{
+    margin-top: 10px;
+    width: 70%;
 }
+
+.side-section h3 {
+    color: rgb(70, 70, 70);
+}
+
 
 .posts-container {
     border-radius: 10px;
@@ -172,7 +178,81 @@ main {
 .fa-trash{
     margin-left: 15px;
 }
+/* start style for comments popup */
+.pop-up-sec{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    background-color: rgb(219 219 219 / 46%);
+    padding: 25px;
+    visibility: hidden;
+    transition: all .4s ease;
+}
 
+  .pop-up-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    background-color: #fbfbfb;
+    position: relative;
+    padding: 1rem;
+    border-radius: 40px;
+    padding: 4rem;
+    transform: scale(.8);
+    margin-top: 4rem;
+    width: 70%;
+    margin-left: 15%;
+  }
+
+  .pop-up-body i{
+    position: absolute;
+    top: 30px;
+    right: 35px;
+    font-size: 20px;
+  }
+.pop-up-body div{
+    width: 100%;
+    text-align: center;
+}
+  .pop-up-body input{
+    padding: 10px;
+    width: 70%;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .pop-up-body input:focus{
+    outline: none;
+  }
+  .pop-up-body p{
+    margin: 1rem 0px ;
+  }
+
+  .pop-up-body .add-comment{
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    color: #fafafa;
+    background-color: #7070ff;
+    width: 65px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-left: 5px;
+  }
+  .pop-up-sec.active{
+    opacity: 1;
+    visibility: visible;
+  }
+  .user-comment{
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    margin-left: 5rem;
+}
+
+  /* end style for comments popup */
 @media screen and (max-width: 768px) {
     header nav {
         position: relative;
