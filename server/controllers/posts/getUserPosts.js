@@ -1,4 +1,4 @@
-const getUserPostsQuery = require('../../database/queries/getUserPostsQuery');
+const {getUserPostsQuery}= require('../../database/queries/index');
 const { verifyJwt } = require('../../utils/customJwt');
 
 const getUserPosts = (req, res) => {

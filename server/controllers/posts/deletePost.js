@@ -1,4 +1,4 @@
-const deletePostQuery = require('../../database/queries/deletePostQuery')
+const {deletePostQuery} = require('../../database/queries/index')
 const deletePost = (req,res)=>{
     const {post_id} = req.body
     console.log(post_id)

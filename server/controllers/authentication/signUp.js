@@ -1,8 +1,8 @@
 const joi = require('joi');
-const checkUserEmailQuery = require('../../database/queries/checkUserEmailQuery');
+const {checkUserEmailQuery} = require('../../database/queries/index');
 const customizeError = require('../../utils/customError');
 const { hashPassword } = require('../../utils/customBcrypt');
-const addUserQuery = require('../../database/queries/addUserQuery');
+const {addUserQuery} = require('../../database/queries/index');
 const { jwtSign } = require('../../utils/customJwt');
 
 const signUp = (req, res, next) => {

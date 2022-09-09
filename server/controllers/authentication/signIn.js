@@ -1,6 +1,6 @@
 const joi = require('joi');
 const { comparePassword } = require('../../utils/customBcrypt');
-const checkUserEmailQuery = require('../../database/queries/checkUserEmailQuery');
+const {checkUserEmailQuery} = require('../../database/queries/index');
 const customizedError = require('../../utils/customError');
 const { jwtSign } = require('../../utils/customJwt');
 
