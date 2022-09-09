@@ -238,12 +238,6 @@ main {
 .post-input.success{
     border: 1px solid green;
 }
-.userComment{
-    display: flex;
-    align-items: center;
-    gap: 10rem;
-    margin-left: 5rem;
-}
 
 
 .popup-post-body input,
@@ -341,6 +335,12 @@ color: red;
     opacity: 1;
     visibility: visible;
   }
+  .user-comment{
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    margin-left: 5rem;
+}
 
   /* end style for comments popup */
 
