@@ -36,14 +36,12 @@ const createPostsCards = (data) => {
     upIcon.classList.add('up-vote');
 
     upIcon.addEventListener('click', () => {
-      
       fetch('/upvote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ post_id: post.id }),
       }).then((data) => data.json())
-      .then(data=> votesNum.textContent = Number(post.count) + 1)
-      // .then((data) => location.reload());
+        .then((data) => votesNum.textContent = Number(post.count) + 1);
     });
 
     const votesNum = document.createElement('div');
@@ -53,17 +51,14 @@ const createPostsCards = (data) => {
     downIcon.classList.add('fa-solid');
     downIcon.classList.add('fa-chevron-down');
     downIcon.classList.add('down-vote');
-// const vote={
-//   count: ''
-// }
-//     fetch(`./votes/${post.id}`).then(data=> data.json()).then(data=> console.log(data.length)
-    downIcon.addEventListener('click', () => { 
+
+    downIcon.addEventListener('click', () => {
       fetch('/downvote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ post_id: post.id }),
       }).then((data) => data.json())
-      .then(data=>  votesNum.textContent = Number(post.count) - 1)
+        .then((data) => votesNum.textContent = Number(post.count) - 1);
     });
 
     votes.appendChild(upIcon);
@@ -199,8 +194,8 @@ submitPost.addEventListener('click', () => {
       e.classList.remove('error');
       e.textContent = '';
     });
-    content.classList.remove('success')
-    title.classList.remove('success')
+    content.classList.remove('success');
+    title.classList.remove('success');
   });
 });
 
@@ -235,11 +230,9 @@ const setError = (element, msg, index2) => {
 };
 
 const setSuccess = (element, msg) => {
-  // const small = document.querySelector('.small');
   small.innerText = '';
 
   element.classList.add('success');
   element.classList.remove('error');
 };
   // end client side validation for create post form
-
