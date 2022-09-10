@@ -43,28 +43,27 @@ VALUES
 
 INSERT INTO posts(title,content,user_id) 
 VALUES 
-('post1','content for post one',1),
-('post2','content for post two',1),
-('post3','content for post three',3),
-('post4','content for post four',2);
+('My First Post','very happy to see you here, enjoy in website journey',3),
+('post 2','just to try add more posts',1),
+('post 3','hello every one',2);
 
 INSERT INTO comments(user_id,post_id,comment) 
 VALUES
-(1,2,'comment for post 2'),
-(2,2,'comment for post 2'),
-(3,4,'comment for post 4'),
-(3,1,'comment for post 1'),
-(2,1,'comment for post 1'),
-(1,3,'comment for post 3');
+(1,1,'great work'),
+(2,1,'hello firts post'),
+(3,2,'comment for test'),
+(3,3,'comment for test'),
+(2,3,'hello third post'),
+(1,2,'hello second post');
 
 INSERT INTO votes(user_id,post_id,type)
 VALUES
 (1,2,'up'),
 (1,3,'down'),
-(2,4,'up'),
+(2,1,'up'),
 (3,2,'up'),
-(2,4,'down'),
-(1,4,'down'),
+(2,3,'down'),
+(1,3,'down'),
 (3,1,'up');
 
 COMMIT;
